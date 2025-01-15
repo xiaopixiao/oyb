@@ -5,7 +5,7 @@ import numpy
 import unittest
 import datetime
 from math import pi
-from oyb import earth
+from .. import earth
 
 class TimeTests(unittest.TestCase):
     def test_example5p6(self):
