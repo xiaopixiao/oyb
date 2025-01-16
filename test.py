@@ -46,8 +46,8 @@ def julian_date_to_gmst(jd):
 t_dt = datetime.datetime(2025, 1, 9, 10, 32, 29)
 # print(earth.getGmst(t_dt))
 print(julian_date_to_gmst(t_dt))
-# rSiteLla_radm = [39.96 * pi / 180, 116.32 * pi / 180, 0]
-rSiteLla_radm = [39.96, 116.32, 0]
+rSiteLla_radm = [39.96 * pi / 180, 116.32 * pi / 180, 0]
+# rSiteLla_radm = [39.96, 116.32, 0]
 # rSiteLla_radm = [116.32, 39.96, 0]
 rSiteEci_m = earth.lla2eci(rSiteLla_radm, t_dt)
 print(rSiteEci_m)

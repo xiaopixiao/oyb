@@ -11,11 +11,11 @@ import rot
 # Key Earth parameters
 mu_m3ps2 = 3.986e14
 tSidDay_s = 23 * 3600 + 56 * 60 + 4.0916
-# eqRad_m = 6.3781e6
-eqRad_m = 6.371393e6
+eqRad_m = 6.3781e6
+# eqRad_m = 6.371393e6
 j2000_dt = datetime.datetime(2000, 1, 1, 12, 0, 0)
-flatness = 0.003353
-# flatness = 0.00335
+# flatness = 0.003353
+flatness = 0.0033528
 j2 = 1.08263e-3
 tSidYear_s = 365.25636 * 86400
 
@@ -117,16 +117,16 @@ def lla2eci(rLla_radm, t_dt):
        lat/lon/altitude, using a spheroid earth and a specific datetime.
     """
     ra_rad = rLla_radm[1] + getGmst(t_dt)
-    ra_rad = rLla_radm[1] + julian_date_to_gmst(t_dt)
+   #  ra_rad = rLla_radm[1] + julian_date_to_gmst(t_dt)
     gmst = julian_date_to_gmst(t_dt)
    #  gmst = getGmst(t_dt)
-    x_ecef, y_ecef, z_ecef = lla_to_ecef(rLla_radm[0], rLla_radm[1], rLla_radm[2])
-    x, y, z = ecef_to_eci(x_ecef, y_ecef, z_ecef, gmst)
+   #  x_ecef, y_ecef, z_ecef = lla_to_ecef(rLla_radm[0], rLla_radm[1], rLla_radm[2])
+   #  x, y, z = ecef_to_eci(x_ecef, y_ecef, z_ecef, gmst)
 
-   #  d = (1 - (2 * flatness - flatness**2) * sin(rLla_radm[0])**2)**0.5
-   #  x = (eqRad_m / d + rLla_radm[2]) * cos(rLla_radm[0]) * cos(ra_rad)
-   #  y = (eqRad_m / d + rLla_radm[2]) * cos(rLla_radm[0]) * sin(ra_rad)
-   #  z = (eqRad_m * (1 - flatness)**2 / d + rLla_radm[2]) * sin(rLla_radm[0])
+    d = (1 - (2 * flatness - flatness**2) * sin(rLla_radm[0])**2)**0.5
+    x = (eqRad_m / d + rLla_radm[2]) * cos(rLla_radm[0]) * cos(ra_rad)
+    y = (eqRad_m / d + rLla_radm[2]) * cos(rLla_radm[0]) * sin(ra_rad)
+    z = (eqRad_m * (1 - flatness)**2 / d + rLla_radm[2]) * sin(rLla_radm[0])
     return numpy.array([x,y,z])
     
 def getQeci2ecf(t_dt):
