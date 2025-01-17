@@ -117,11 +117,11 @@ def lla2eci(rLla_radm, t_dt):
        lat/lon/altitude, using a spheroid earth and a specific datetime.
     """
     ra_rad = rLla_radm[1] + getGmst(t_dt)
-   #  ra_rad = rLla_radm[1] + julian_date_to_gmst(t_dt)
+    # ra_rad = rLla_radm[1] + julian_date_to_gmst(t_dt)
     gmst = julian_date_to_gmst(t_dt)
-   #  gmst = getGmst(t_dt)
-   #  x_ecef, y_ecef, z_ecef = lla_to_ecef(rLla_radm[0], rLla_radm[1], rLla_radm[2])
-   #  x, y, z = ecef_to_eci(x_ecef, y_ecef, z_ecef, gmst)
+    gmst = getGmst(t_dt)
+    x_ecef, y_ecef, z_ecef = lla_to_ecef(rLla_radm[0], rLla_radm[1], rLla_radm[2])
+    x, y, z = ecef_to_eci(x_ecef, y_ecef, z_ecef, gmst)
 
     d = (1 - (2 * flatness - flatness**2) * sin(rLla_radm[0])**2)**0.5
     x = (eqRad_m / d + rLla_radm[2]) * cos(rLla_radm[0]) * cos(ra_rad)
